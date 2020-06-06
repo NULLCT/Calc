@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calc</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 2px;
+        font-family: initial;
+      }
+      input {
+        width: 224px;
+        height: 50px;
+        font-size: 30px;
+        background: none;
+        border: none;
+        border-bottom: solid 1px black;
+      }
+      .button {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        color: black;
+        background: white;
+        border: none;
+        transition: 0.2s;
+      }
+      .button:hover {
+        color: azure;
+        background: gray;
+      }
+      .button:active {
+        background: black;
+      }
+    </style>
+    <input />
+    <br />
+    <script>
+      function update(_v) {
+        document.querySelector("input").value = _v;
+      }
+      function append(_v) {
+        document.querySelector("input").value += _v;
+      }
+      function calc() {
+        const v = document.querySelector("input").value;
+        try {
+          const f = new Function("return " + v);
+          update(f().toString());
+        } catch (_error) {
+          update("ERROR");
+        }
+      }
+    </script>
+    <table>
+      <tr>
+        <td><button class="button" onclick="update('')">C</button></td>
+        <td><button class="button" onclick="append('**0.5')">√</button></td>
+        <td><button class="button" onclick="append('9')">/</button></td>
+        <td><button class="button" onclick="append('*')">x</button></td>
+      </tr>
+      <tr>
+        <td><button class="button" onclick="append('7')">7</button></td>
+        <td><button class="button" onclick="append('8')">8</button></td>
+        <td><button class="button" onclick="append('9')">9</button></td>
+        <td><button class="button" onclick="append('-')">-</button></td>
+      </tr>
+      <tr>
+        <td><button class="button" onclick="append('4')">4</button></td>
+        <td><button class="button" onclick="append('5')">5</button></td>
+        <td><button class="button" onclick="append('6')">6</button></td>
+        <td><button class="button" onclick="append('+')">+</button></td>
+      </tr>
+      <tr>
+        <td><button class="button" onclick="append('1')">1</button></td>
+        <td><button class="button" onclick="append('2')">2</button></td>
+        <td><button class="button" onclick="append('3')">3</button></td>
+        <td rowspan="5">
+          <button class="button" style="height: 108px;" onclick="calc()">
+            =
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button class="button" style="width: 108px;" onclick="append('0')">
+            0
+          </button>
+        </td>
+        <td><button class="button" onclick="append('.')">.</button></td>
+      </tr>
+    </table>
+  </body>
+</html>
