@@ -1,4 +1,3 @@
 # Calc
-Make Calc with Electron  
-now↓
+Make Calc with Electron
 ![Cal](screen.png)
